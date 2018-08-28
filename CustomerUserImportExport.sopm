@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<otrs_package version="1.1">
+    <Name>CustomerUserImportExport</Name>
+    <Version>5.0.0</Version>
+    <Vendor>c.a.p.e. IT GmbH</Vendor>
+    <URL>http://www.cape-it.de/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <ChangeLog Version="5.0.0" Date="2015-11-13 16:36:56">CR: T#2015082690000517 (added framework OTRS 5.0.x) (tlange).</ChangeLog>
+    <ChangeLog Version="4.99.80" Date="2015-09-07 13:07:20">CR: (added changes for use with OTRS 5.0.x beta 3)</ChangeLog>
+    <Description Lang="en">Provides ImportExportBackend for CustomerUsers.</Description>
+    <Framework>5.0.x</Framework>
+    <IntroInstall Lang="en" Title="Install Information" Type="pre">
+        
+        &lt;br/&gt;
+        &lt;strong&gt;WELCOME&lt;/strong&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        You are about to install the OTRS module CustomerUserImportExport.&lt;br/&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        REQUIRED OTRS PACKAGES
+        &lt;ul&gt;
+            &lt;li&gt;ImportExport &gt; 4.0.0&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        c.a.p.e. IT ...easy.&lt;br/&gt;
+        &lt;br/&gt;
+    </IntroInstall>
+    <IntroInstall Lang="en" Title="Installation Information" Type="post">
+        
+        &lt;br/&gt;
+        The package has been installed.&lt;br/&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        c.a.p.e. IT ...easy.&lt;br/&gt;
+        &lt;br/&gt;
+    </IntroInstall>
+    <IntroUninstall Lang="en" Title="Uninstallation Information" Type="pre">
+        
+        &lt;br/&gt;
+        &lt;strong&gt;WELCOME&lt;/strong&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        You are about to UNINSTALL the OTRS module CustomerUserImportExport.&lt;br/&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        c.a.p.e. IT ...easy.&lt;br/&gt;
+        &lt;br/&gt;
+    </IntroUninstall>
+    <IntroUpgrade Lang="en" Title="Upgrade Information" Type="pre">
+        
+        &lt;br/&gt;
+        &lt;strong&gt;WELCOME&lt;/strong&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        You are about to upgrade the OTRS module CustomerUserImportExport.&lt;br/&gt;
+        &lt;br/&gt;
+        &lt;br/&gt;
+        c.a.p.e. IT ...easy.&lt;br/&gt;
+        &lt;br/&gt;
+    </IntroUpgrade>
+    <PackageRequired Version="5.0.1">ImportExport</PackageRequired>
+    <CodeInstall Type="post">
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+    $Kernel::OM-&gt;Get($CodeModule)-&gt;CodeInstall();
+    
+    </CodeInstall>
+    <CodeUpgrade Type="post">
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+    $Kernel::OM-&gt;Get($CodeModule)-&gt;CodeUpgrade();
+    
+    </CodeUpgrade>
+    <CodeUninstall Type="pre">
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+    $Kernel::OM-&gt;Get($CodeModule)-&gt;CodeUninstall();
+    
+    </CodeUninstall>
+    <CodeReinstall Type="post">
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+    $Kernel::OM-&gt;Get($CodeModule)-&gt;CodeReinstall();
+    
+    </CodeReinstall>
+    
+    
+    <Filelist>
+        <File Location="Kernel/Config/Files/CustomerUserImportExport.xml" Permission="644"/>
+        <File Location="Kernel/System/ImportExport/ObjectBackend/CustomerUser.pm" Permission="644"/>
+        <File Location="Kernel/Language/de_CustomerUserImportExport.pm" Permission="644"/>
+        <File Location="var/packagesetup/CustomerUserImportExport.pm" Permission="644"/>
+        <File Location="doc/en/USAGE_customeruserimportexport.pod" Permission="644"/>
+        <File Location="doc/CHANGES_CustomerUserImportExport.md" Permission="644"/>
+        <File Location="scripts/test/ImportExportObjectCustomerUser.t" Permission="644"/>
+    </Filelist>
+    <DatabaseInstall>
+    </DatabaseInstall>
+    <DatabaseReinstall>
+    </DatabaseReinstall>
+    <DatabaseUninstall>
+    </DatabaseUninstall>
+</otrs_package>
