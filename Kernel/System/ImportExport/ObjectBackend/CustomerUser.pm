@@ -208,6 +208,17 @@ sub ObjectAttributesGet {
                 ValueDefault => 1,
             },
         },
+        {
+            Key   => 'DefaultUserGroup',
+            Name  => 'Default Groups',
+            Input => {
+                Type         => 'Text',
+                Required     => 0,
+                Size         => 50,
+                MaxLength    => 250,
+                ValueDefault => '',
+            },
+        },
     ];
 
     return $Attributes;
@@ -277,6 +288,8 @@ sub MappingObjectAttributesGet {
         push( @ElementList, $CurrAttribute );
 
     }
+
+    push @ElementList, "UserGroups";
 
     my $Attributes = [
         {
@@ -426,6 +439,8 @@ sub ExportDataGet {
 
     my @ExportData;
 
+    my $GroupObject = $Kernel::OM->Get('Kernel::System::CustomerGroup');
+
     for my $CurrUser (%CustomerUserList) {
 
         my %CustomerUserData = $Kernel::OM->Get('Kernel::System::CustomerUser')->CustomerUserDataGet(
@@ -443,6 +458,15 @@ sub ExportDataGet {
         if ( $CustomerUserData{UserPassword} ) {
             $CustomerUserData{UserPassword} = '-';
         }
+
+        # create list of groups
+        my %Groups = $GroupObject->GroupMemberList(
+            UserID => $CurrUser,
+            Type   => 'rw',
+            Result => 'HASH',
+        );
+
+        $CustomerUserData{UserGroups} = join ',', sort values %Groups;
 
         if (
             $CustomerUserData{Source}
@@ -533,6 +557,8 @@ sub ImportDataSave {
         return ( undef, 'Failed' );
     }
 
+    my $GroupObject = $Kernel::OM->Get('Kernel::System::CustomerGroup');
+
     # create the mapping object list
     #    my @MappingObjectList;
     #    my %Identifier;
@@ -549,7 +575,7 @@ sub ImportDataSave {
             $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
             MappingID => $MappingID,
             UserID    => $Param{UserID},
-            );
+        );
 
         # check mapping object data
         if ( !$MappingObjectData || ref $MappingObjectData ne 'HASH' ) {
@@ -717,6 +743,8 @@ sub ImportDataSave {
             || $DefaultEmailAddress;
     }
 
+    my $UserGroups = delete $NewCustomerUserData{UserGroups} || $ObjectData->{DefaultUserGroup} || '';
+
     # reset UserPassword...
     if (
         ( $NewUser || $ObjectData->{ResetPassword} )
@@ -765,6 +793,17 @@ sub ImportDataSave {
             );
         }
         else {
+            for my $Group ( split /\s*,\s*/, $UserGroups ) {
+                my $GID = $GroupObject->GroupLookup( Group => $Group );
+
+                $GroupObject->GroupMemberAdd(
+                    UID        => $Result,
+                    GID        => $GID,
+                    Permission => { rw => 1 },
+                    UserID     => $Param{UserID},
+                );
+            }
+
             $ReturnCode = "Created";
         }
 
@@ -796,6 +835,18 @@ sub ImportDataSave {
                 );
             }
             else {
+                for my $Group ( split /\s*,\s*/, $UserGroups ) {
+                    my $GID = $GroupObject->GroupLookup( Group => $Group );
+
+                    $GroupObject->GroupMemberAdd(
+                        UID        => $NewCustomerUserData{$CustomerUserKey},
+                        GID        => $GID,
+                        Permission => { rw => 1 },
+                        UserID     => $Param{UserID},
+                    );
+                }
+
+            # restore customer user data backend refs...
                 $ReturnCode = "Changed";
             }
         }
@@ -869,6 +920,17 @@ sub ImportDataSave {
                         . " failed (line $Param{Counter}).",
                 );
                 $ReturnCode = "";
+            }
+
+            for my $Group ( split /\s*,\s*/, $UserGroups ) {
+                my $GID = $GroupObject->GroupLookup( Group => $Group );
+
+                $GroupObject->GroupMemberAdd(
+                    UID        => $NewCustomerUserData{$CustomerUserKey},
+                    GID        => $GID,
+                    Permission => { rw => 1 },
+                    UserID     => $Param{UserID},
+                );
             }
 
             # restore customer user data backend refs...
