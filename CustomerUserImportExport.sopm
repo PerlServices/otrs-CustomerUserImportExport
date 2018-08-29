@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <Name>CustomerUserImportExport</Name>
-    <Version>5.0.0</Version>
-    <Vendor>c.a.p.e. IT GmbH</Vendor>
-    <URL>http://www.cape-it.de/</URL>
+    <Version>5.0.1</Version>
+    <Vendor>Perl-Services.de (originally written by c.a.p.e IT GmbH)</Vendor>
+    <URL>https://www.perl-services.de/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <ChangeLog Version="5.0.0" Date="2015-11-13 16:36:56">CR: T#2015082690000517 (added framework OTRS 5.0.x) (tlange).</ChangeLog>
     <ChangeLog Version="4.99.80" Date="2015-09-07 13:07:20">CR: (added changes for use with OTRS 5.0.x beta 3)</ChangeLog>
