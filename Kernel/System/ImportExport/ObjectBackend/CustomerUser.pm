@@ -145,6 +145,21 @@ sub ObjectAttributesGet {
             },
         },
         {
+            Key   => 'ForceDefaultUserCustomerID',
+            Name  => 'Use default customer id instead of existing customer id',
+            Input => {
+                Type => 'Selection',
+                Data => {
+                    '0' => 'No',
+                    '1' => 'Yes',
+                },
+                Required     => 0,
+                Translation  => 1,
+                PossibleNone => 0,
+                ValueDefault => 0,
+            },
+        },
+        {
             Key   => 'EnableMailDomainCustomerIDMapping',
             Name  => 'Maildomain-CustomerID Mapping (see SysConfig)',
             Input => {
@@ -730,10 +745,16 @@ sub ImportDataSave {
     }
 
     # default UserCustomerID...
-    if ( !$NewCustomerUserData{UserCustomerID} ) {
+    my $ForceDefaultCustomerID = $ObjectData->{ForceDefaultUserCustomerID};
+    if ( !$NewCustomerUserData{UserCustomerID} && !$ForceDefaultCustomerID ) {
         $NewCustomerUserData{UserCustomerID} = $CustomerUserData{UserCustomerID}
             || $ObjectData->{DefaultUserCustomerID}
             || $DefaultCustomerID;
+    }
+    elsif ( !$NewCustomerUserData{UserCustomerID} && $ForceDefaultCustomerID ) {
+        $NewCustomerUserData{UserCustomerID} = $ObjectData->{DefaultUserCustomerID}
+            || $DefaultCustomerID
+            || $CustomerUserData{UserCustomerID};
     }
 
     # default UserEmail...
