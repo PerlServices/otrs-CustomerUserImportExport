@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<otrs_config version="2.0" init="Application">
+    <CVS>$Id: CustomerUserImportExport.xml,v 1.4 2013/02/12 11:42:39 tto Exp $</CVS>
+    <Setting Name="ImportExport::ObjectBackendRegistration###CustomerUser" Required="0" Valid="1">
+        <Description Translatable="1">Object backend module registration for the import/export module.</Description>
+        <Navigation>ObjectBackend::ModuleRegistration</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Module">Kernel::System::ImportExport::ObjectBackend::CustomerUser</Item>
+                <Item Key="Name">CustomerUser</Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerUserImport::DefaultCustomerID" Required="1" Valid="1">
+        <Description Translatable="1">Defines which customer ID to use if no company defined - only relevant for new customer users.</Description>
+        <Navigation>CustomerUserImportExport</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex="">XMPLCustomerID</Item>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerUserImport::DefaultEmailAddress" Required="1" Valid="1">
+        <Description Translatable="1">Defines which email address to use if not defined - strongly depends on backend configuration!!!.</Description>
+        <Navigation>CustomerUserImportExport</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex="">dummy@localhost</Item>
+        </Value>
+    </Setting>
+    <Setting Name="CustomerUserImport::EMailDomainCustomerIDMapping" Required="1" Valid="1">
+        <Description Translatable="1">Defines a mapping of email domains to customer IDs. A special key value is ANYTHINGELSE, which is similar to default customer ID but also affects updates.</Description>
+        <Navigation>CustomerUserImportExport</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="oexample.com">XMPLCustomerID</Item>
+            </Hash>            
+        </Value>
+    </Setting>
+    <Setting Name="ImportExport::CustomerUserImportExport::ForceCSVMappingRecreation" Required="1" Valid="1">
+        <Description Translatable="1">Defines if CSV-mappings are re-created on next package reinstallation or upgrade if already existent.</Description>
+        <Navigation>CustomerUserImportExport</Navigation>
+        <Value>
+            <Item ValueType="Checkbox">0</Item>
+        </Value>
+    </Setting>
+
+</otrs_config>
