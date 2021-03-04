@@ -72,7 +72,6 @@
         <File Location="Kernel/Language/de_CustomerUserImportExport.pm" Permission="644"/>
         <File Location="var/packagesetup/CustomerUserImportExport.pm" Permission="644"/>
         <File Location="doc/en/USAGE_customeruserimportexport.pod" Permission="644"/>
-        <File Location="doc/CHANGES_CustomerUserImportExport.md" Permission="644"/>
         <File Location="scripts/test/ImportExportObjectCustomerUser.t" Permission="644"/>
     </Filelist>
     <DatabaseInstall>
