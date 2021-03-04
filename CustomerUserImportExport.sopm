@@ -13,25 +13,18 @@
         &lt;strong&gt;WELCOME&lt;/strong&gt;
         &lt;br/&gt;
         &lt;br/&gt;
-        You are about to install the OTRS module CustomerUserImportExport.&lt;br/&gt;
+        You are about to install the OTOBO module CustomerUserImportExport.&lt;br/&gt;
         &lt;br/&gt;
         &lt;br/&gt;
-        REQUIRED OTRS PACKAGES
+        REQUIRED OTOBO PACKAGES
         &lt;ul&gt;
-            &lt;li&gt;ImportExport &gt; 6.0.0&lt;/li&gt;
+            &lt;li&gt;ImportExport &gt; 10.0.0&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;br/&gt;
-        &lt;br/&gt;
-        c.a.p.e. IT ...easy.&lt;br/&gt;
-        &lt;br/&gt;
     </IntroInstall>
     <IntroInstall Lang="en" Title="Installation Information" Type="post">
         
         &lt;br/&gt;
         The package has been installed.&lt;br/&gt;
-        &lt;br/&gt;
-        &lt;br/&gt;
-        c.a.p.e. IT ...easy.&lt;br/&gt;
         &lt;br/&gt;
     </IntroInstall>
     <IntroUninstall Lang="en" Title="Uninstallation Information" Type="pre">
@@ -40,12 +33,7 @@
         &lt;strong&gt;WELCOME&lt;/strong&gt;
         &lt;br/&gt;
         &lt;br/&gt;
-        You are about to UNINSTALL the OTRS module CustomerUserImportExport.&lt;br/&gt;
-        &lt;br/&gt;
-        &lt;br/&gt;
-        &lt;br/&gt;
-        c.a.p.e. IT ...easy.&lt;br/&gt;
-        &lt;br/&gt;
+        You are about to UNINSTALL the OTOBO module CustomerUserImportExport.&lt;br/&gt;
     </IntroUninstall>
     <IntroUpgrade Lang="en" Title="Upgrade Information" Type="pre">
         
@@ -53,11 +41,7 @@
         &lt;strong&gt;WELCOME&lt;/strong&gt;
         &lt;br/&gt;
         &lt;br/&gt;
-        You are about to upgrade the OTRS module CustomerUserImportExport.&lt;br/&gt;
-        &lt;br/&gt;
-        &lt;br/&gt;
-        c.a.p.e. IT ...easy.&lt;br/&gt;
-        &lt;br/&gt;
+        You are about to upgrade the OTOBO module CustomerUserImportExport.&lt;br/&gt;
     </IntroUpgrade>
     <PackageRequired Version="6.0.1">ImportExport</PackageRequired>
     <CodeInstall Type="post">

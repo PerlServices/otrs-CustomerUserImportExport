@@ -1,6 +1,7 @@
 # --
 # CustomerUserImportExport.pm - code run during package de-/installation
 # Copyright (C) 2006-2014 c.a.p.e. IT GmbH, http://www.cape-it.de
+# Changes Copyright (C) 2018 - 2021 Perl-Services.de, https://perl-services.de
 #
 # written/edited by:
 # * Martin(dot)Balzarek(at)cape(dash)it.de
@@ -8,8 +9,6 @@
 # * Anna(dot)Litvinova(at)cape(dash)it.de
 # * Frank(dot)Oberender(at)cape(dash)it(dot)de
 # * Thomas(dot)Lange(at)cape(dash)it(dot)de
-# --
-# $Id: CustomerUserImportExport.pm,v 1.12 2015/11/13 15:20:03 tlange Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -46,45 +45,6 @@ All functions
 =item new()
 
 create an object
-
-    use Kernel::Config;
-    use Kernel::System::Log;
-    use Kernel::System::Main;
-    use Kernel::System::Time;
-    use Kernel::System::DB;
-    use Kernel::System::XML;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $LogObject    = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $TimeObject = Kernel::System::Time->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $XMLObject = Kernel::System::XML->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
-    my $CodeObject = var::packagesetup::OTRS-CiCS-ITSM.pm->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-        TimeObject   => $TimeObject,
-        DBObject     => $DBObject,
-        XMLObject    => $XMLObject,
-    );
 
 =cut
 

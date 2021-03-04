@@ -1,6 +1,6 @@
 # --
-# Kernel/System/ImportExport/ObjectBackend/CustomerUser.pm - import/export backend for CustomerUser
 # Copyright (C) 2006-2015 c.a.p.e. IT GmbH, http://www.cape-it.de
+# Changes Copyright (C) 2018 - 2021 Perl-Services.de, https://perl-services.de
 #
 # written/edited by:
 # * Torsten(dot)Thau(at)cape(dash)it(dot)de
@@ -43,33 +43,6 @@ All functions to import and export CustomerUser entries
 =item new()
 
 create an object
-
-    use Kernel::Config;
-    use Kernel::System::DB;
-    use Kernel::System::Log;
-    use Kernel::System::Main;
-    use Kernel::System::ImportExport::ObjectBackend::CustomerUser;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $BackendObject = Kernel::System::ImportExport::ObjectBackend::CustomerUser->new(
-        ConfigObject       => $ConfigObject,
-        LogObject          => $LogObject,
-        DBObject           => $DBObject,
-        MainObject         => $MainObject,
-        ImportExportObject => $ImportExportObject,
-    );
 
 =cut
 
@@ -635,7 +608,7 @@ sub ImportDataSave {
             $Param{ImportDataRow}->[$Counter];
         } 
         else {
-            # Sanitize country if it isn't found in OTRS to increase the chance it will
+            # Sanitize country if it isn't found in OTOBO to increase the chance it will
             # Note that standardizing against the ISO 3166-1 list might be a better approach...
             my $CountryList = $Kernel::OM->Get('Kernel::System::ReferenceData')->CountryList();
             if ( exists $CountryList->{$Param{ImportDataRow}->[$Counter]} ) {
