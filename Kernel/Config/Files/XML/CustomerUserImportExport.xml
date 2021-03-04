@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<otrs_config version="2.0" init="Application">
-    <CVS>$Id: CustomerUserImportExport.xml,v 1.4 2013/02/12 11:42:39 tto Exp $</CVS>
+<otobo_config version="2.0" init="Application">
     <Setting Name="ImportExport::ObjectBackendRegistration###CustomerUser" Required="0" Valid="1">
         <Description Translatable="1">Object backend module registration for the import/export module.</Description>
         <Navigation>ObjectBackend::ModuleRegistration</Navigation>
@@ -42,4 +41,4 @@
         </Value>
     </Setting>
 
-</otrs_config>
+</otobo_config>
